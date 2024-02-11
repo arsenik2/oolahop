@@ -1,4 +1,3 @@
-import os
 from typing import Optional, List
 
 from dotenv import dotenv_values
@@ -13,15 +12,15 @@ from bson import ObjectId
 import motor.motor_asyncio
 from pymongo import ReturnDocument
 
-# config = dotenv_values(".env")
+config = dotenv_values(".env")
 
 app = FastAPI(
     title="API for Oolahop",
     summary="CRUD Webservice for Gelataria",
 )
-client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGODB_URL"))
-db = client["oolahop"]
-gelataria_collection = db.get_collection("gelataria")
+client = motor.motor_asyncio.AsyncIOMotorClient(config["ATLAS_URI"])
+db = client[config["DB_NAME"]]
+gelataria_collection = db.get_collection(config["COLLECTION"])
 
 # Represents an ObjectId field in the database.
 # It will be represented as a `str` on the model so that it can be serialized to JSON.
