@@ -100,7 +100,7 @@ class GelatariaCollection(BaseModel):
 
 
 @app.post(
-    "/gelatarias/",
+    "/api/gelatarias/",
     response_description="Add new gelataria",
     response_model=GelatariaModel,
     status_code=status.HTTP_201_CREATED,
@@ -122,7 +122,7 @@ async def create_gelataria(gelataria: GelatariaModel = Body(...)):
 
 
 @app.get(
-    "/gelatarias/",
+    "/api/gelatarias/",
     response_description="List all gelatarias",
     response_model=GelatariaCollection,
     response_model_by_alias=False,
@@ -137,7 +137,7 @@ async def list_gelatarias():
 
 
 @app.get(
-    "/gelatarias/{id}",
+    "/api/gelatarias/{id}",
     response_description="Get a single gelataria",
     response_model=GelatariaModel,
     response_model_by_alias=False,
@@ -155,7 +155,7 @@ async def show_gelataria(id: str):
 
 
 @app.put(
-    "/gelatarias/{id}",
+    "/api/gelatarias/{id}",
     response_description="Update a gelataria",
     response_model=GelatariaModel,
     response_model_by_alias=False,
@@ -189,7 +189,7 @@ async def update_gelataria(id: str, gelataria: UpdateGelatariaModel = Body(...))
     raise HTTPException(status_code=404, detail=f"Student {id} not found")
 
 
-@app.delete("/gelatarias/{id}", response_description="Delete a gelataria")
+@app.delete("/api/gelatarias/{id}", response_description="Delete a gelataria")
 async def delete_gelataria(id: str):
     """
     Remove a single student record from the database.
